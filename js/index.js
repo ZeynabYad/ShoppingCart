@@ -18,3 +18,9 @@ function createCart() {
     }
     document.querySelector('table').innerHTML = cardContent;
 }
+
+//delete product from shopping cart
+function deleteProduct(index) {
+    products.splice(index, 1);
+    console.log(products);
+}
