@@ -8,15 +8,25 @@ const products = [
 
 //create shopping cart table from products array
 
+// function createCartTable() {
+//     let cardContent = "";
+//     products.forEach(function (productName, productIndex) {
+//         cardContent += `<tr>
+//         <td>${productName}</td>
+//         <td><i class="fa-solid fa-trash-can text-danger" onClick="deleteProduct(${productIndex})"></i></td>
+//       </tr>`
+//     });
+//     document.querySelector('tbody').innerHTML = cardContent;
+// }
 function createCartTable() {
-    let cardContent = "";
-    products.forEach(function (productName, productIndex) {
-        cardContent += `<tr>
+    let rows = products.map((productName, productIndex) =>
+         `<tr>
         <td>${productName}</td>
         <td><i class="fa-solid fa-trash-can text-danger" onClick="deleteProduct(${productIndex})"></i></td>
       </tr>`
-    });
-    document.querySelector('tbody').innerHTML = cardContent;
+    );
+
+    document.querySelector('tbody').innerHTML = rows.join('');
 }
 
 //add event listeners to sort icons
