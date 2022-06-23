@@ -7,20 +7,19 @@ const products = [
 ];
 
 //create shopping cart table from products array
-function createCart() {
+function createCartTable() {
     let cardContent = "";
     for (const product in products) {
         cardContent += `<tr>
     <td>${products[product]}</td>
     <td><i class="fa-solid fa-trash-can text-danger" onClick="deleteProduct(${product})"></i></td>
   </tr>`;
-
     }
     document.querySelector('table').innerHTML = cardContent;
 }
 
 //delete product from shopping cart
-function deleteProduct(index) {
-    products.splice(index, 1);
-    console.log(products);
+function deleteProduct(productIndex) {
+    products.splice(productIndex, 1);
+    createCartTable();
 }
