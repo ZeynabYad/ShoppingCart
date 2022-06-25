@@ -11,8 +11,9 @@ function createCartTable() {
         `<tr>
         <td>${product.productName}</td>
         <td>${product.productPrice} $</td>
-        <td><i class="fa-solid fa-plus btn btn-success btn-sm me-3" onClick="addQuantity(${productIndex})"></i>${product.productQuantity}
-        <i class="fa-solid fa-minus btn btn-warning btn-sm ms-3" onClick="reduceQuantity(${productIndex})"></i></td>
+        <td><i class="fa-solid fa-minus btn btn-warning btn-sm me-3" onClick="reduceQuantity(${productIndex})"></i>
+        ${product.productQuantity}
+        <i class="fa-solid fa-plus btn btn-success btn-sm ms-3" onClick="addQuantity(${productIndex})"></i></td>
         <td>${Number(product.productPrice) * Number(product.productQuantity)}</td>
         <td><i class="fa-solid fa-trash-can text-danger" onClick="deleteProduct(${productIndex})"></i></td>
       </tr>`
@@ -26,28 +27,40 @@ function createCartTable() {
 document.querySelector('.fa-arrow-down-a-z').addEventListener('click', function () {
     sortProductName(true);
 })
-document.querySelector('.fa-arrow-down-z-a').addEventListener('click', function () {
+document.querySelector('.fa-arrow-up-z-a').addEventListener('click', function () {
     sortProductName(false);
 })
 
 
 // sort productName function
-// function sortProductName(direction) {
-//     if (direction) {
-//         products.sort(productName)
-//         createCartTable();
-//     }
-//     else {
-//         products.sort(productName).reverse()
-//         createCartTable();
-//     };
-// }
+function sortProductName(direction) {
+    if (direction) {
+        products.sort(function (a, b) {
+            let fa = a.productName.toLowerCase();
+            let fb = b.productName.toLowerCase();
+            if (fa < fb) return -1;
+            if (fa > fb) return 1;
+            return 0;
+        })
+        createCartTable();
+    }
+    else {
+        products.sort(function (a, b) {
+            let fa = a.productName.toLowerCase();
+            let fb = b.productName.toLowerCase();
+            if (fa > fb) return -1;
+            if (fa < fb) return 1;
+            return 0;
+        })
+        createCartTable();
+    };
+}
 
 // delete product from shopping cart
-// function deleteProduct(productIndex) {
-//     products.splice(productIndex, 1);
-//     createCartTable();
-// }
+function deleteProduct(productIndex) {
+    products.splice(productIndex, 1);
+    createCartTable();
+}
 
 //Add product Quantity 
 function addQuantity(productIndex) {
