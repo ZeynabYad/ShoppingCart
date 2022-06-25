@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
@@ -18,18 +18,30 @@
   <body onLoad="createCartTable()">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-4">
-          <table class="table table-bordered">
+        <div class="col-6">
+          <table class="table table-bordered text-center">
             <thead>
-                <tr>
-                  <td class="d-flex justify-content-between">
-                    <i class="fa-solid fa-arrow-down-a-z"></i>
-                    <i class="fa-solid fa-arrow-down-z-a"></i>
-                  </td>
-                  <td></td>
-                </tr>
-              </thead>
-              <tbody></tbody>
+              <tr>
+                <td class="d-flex justify-content-between">
+                  <i class="fa-solid fa-arrow-down-a-z"></i>
+                  <i class="fa-solid fa-arrow-down-z-a"></i>
+                </td>
+                <td>Price</td>
+                <td>Quantity</td>
+                <td>Total</td>
+                <td></td>
+              </tr>
+            </thead>
+            <tbody></tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">
+                  <button class="btn btn-primary">Buy Now</button>
+                </td>
+                <td colspan="3">Order Total</td>
+                
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>
