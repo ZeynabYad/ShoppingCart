@@ -12,13 +12,14 @@ function createCartTable() {
         <td>${product.productName}</td>
         <td>${product.productPrice} $</td>
         <td><i class="fa-solid fa-plus btn btn-success btn-sm me-3" onClick="addQuantity(${productIndex})"></i>${product.productQuantity}
-        <i class="fa-solid fa-minus btn btn-danger btn-sm ms-3" onClick="reduceQuantity(${productIndex})"></i></td>
+        <i class="fa-solid fa-minus btn btn-warning btn-sm ms-3" onClick="reduceQuantity(${productIndex})"></i></td>
         <td>${Number(product.productPrice) * Number(product.productQuantity)}</td>
         <td><i class="fa-solid fa-trash-can text-danger" onClick="deleteProduct(${productIndex})"></i></td>
       </tr>`
     );
 
     document.querySelector('tbody').innerHTML = rows.join('');
+    calculateOrderTotal();
 }
 
 //add event listeners to sort icons
@@ -30,19 +31,19 @@ document.querySelector('.fa-arrow-down-z-a').addEventListener('click', function 
 })
 
 
-// // sort productName function
+// sort productName function
 // function sortProductName(direction) {
 //     if (direction) {
-//         products.sort()
+//         products.sort(productName)
 //         createCartTable();
 //     }
 //     else {
-//         products.sort().reverse()
+//         products.sort(productName).reverse()
 //         createCartTable();
 //     };
 // }
 
-//delete product from shopping cart
+// delete product from shopping cart
 // function deleteProduct(productIndex) {
 //     products.splice(productIndex, 1);
 //     createCartTable();
@@ -60,4 +61,11 @@ function reduceQuantity(productIndex) {
         products[productIndex].productQuantity--;
         createCartTable();
     };
+}
+
+//function calculateOrderTotal to calculate sum order
+function calculateOrderTotal() {
+    let sum = products.reduce((accumulator, currentProduct) => accumulator + (currentProduct.productPrice * currentProduct.productQuantity), 0);
+    console.log(sum)
+    document.querySelector('tfoot').innerHTML = `<tr><td colspan="2"></td><td colspan="3">Sum: ${sum}$</td><tr>`;
 }
