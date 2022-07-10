@@ -1,20 +1,22 @@
 const products = [
-    { productName: 'Product 1', productPrice: 170, productQuantity: 1 },
-    { productName: 'Product 2', productPrice: 120, productQuantity: 5 },
-    { productName: 'Product 3', productPrice: 180, productQuantity: 3 },
-    { productName: 'Product 4', productPrice: 200, productQuantity: 2 },
-    { productName: 'Product 5', productPrice: 250, productQuantity: 1 },
+    { productName: 'Tropicana Apple Juice', productPrice: 35, productQuantity: 1, productImageSrc: 'TropicanaAppleJuice.jpg' },
+    { productName: 'McCafe Medium Coffee', productPrice: 45, productQuantity: 5, productImageSrc: 'McCafeMediumCoffee.jpg' },
+    { productName: 'KitKat Wafer', productPrice: 20, productQuantity: 3, productImageSrc: 'KitKatWafer.jpg' },
+    { productName: 'Lays Potato Chips', productPrice: 25, productQuantity: 2, productImageSrc: 'LaysPotatoChips.jpg' },
+    { productName: 'Cheetos Puffs Cheese', productPrice: 20, productQuantity: 1, productImageSrc: 'CheetosPuffsCheese.jpg' },
 ];
 
 function createCartTable() {
     let rows = products.map((product, productIndex) =>
-        `<tr>
-        <td>${product.productName}</td>
-        <td>${product.productPrice} $</td>
-        <td><i class="fa-solid fa-minus btn btn-warning btn-sm me-3" onClick="reduceQuantity(${productIndex})"></i>
+        `<tr class='align-middle'>
+        <th>${productIndex + 1}</th>
+        <th><img width="80" height="80" src="images/${product.productImageSrc}"></th>
+        <td class='text-start'>${product.productName}</td>
+        <td>$${product.productPrice}</td>
+        <td class="fw-bold"><i class="fa-solid fa-minus btn btn-warning btn-sm me-3" onClick="reduceQuantity(${productIndex})"></i>
         ${product.productQuantity}
         <i class="fa-solid fa-plus btn btn-success btn-sm ms-3" onClick="addQuantity(${productIndex})"></i></td>
-        <td>${Number(product.productPrice) * Number(product.productQuantity)}</td>
+        <td class="fw-bold">$${Number(product.productPrice) * Number(product.productQuantity)}</td>
         <td><i class="fa-solid fa-trash-can text-danger" onClick="deleteProduct(${productIndex})"></i></td>
       </tr>`
     );
@@ -80,5 +82,14 @@ function reduceQuantity(productIndex) {
 function calculateOrderTotal() {
     let sum = products.reduce((accumulator, currentProduct) => accumulator + (currentProduct.productPrice * currentProduct.productQuantity), 0);
     console.log(sum)
-    document.querySelector('tfoot').innerHTML = `<tr><td colspan="2"></td><td colspan="3">Sum: ${sum}$</td><tr>`;
+    document.querySelector('tfoot').innerHTML = 
+    `<tr>
+    <td colspan=""></td>
+    <td colspan=""></td>
+    <td colspan=""></td>
+    <td colspan=""></td>
+    <td colspan=""></td>
+    <td class="fw-bold" colspan="">TOTAL: $${sum}</td>
+    <td colspan=""></td>
+    <tr>`;
 }
