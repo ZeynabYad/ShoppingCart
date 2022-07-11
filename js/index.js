@@ -31,6 +31,9 @@ const products = [
     },
 ];
 let currentArray=products;
+window.onload = () => {
+    createCartTable(currentArray);
+}
 //function createCartTable
 function createCartTable(array) {
     let rows = array.map(
@@ -41,7 +44,7 @@ function createCartTable(array) {
             }"></th>
           <td class='text-start'>${item.productName}</td>
           <td>$${item.productPrice}</td>
-          <td class="fw-bold"><i class="fa-solid fa-minus btn btn-warning btn-sm me-3" onClick="reduceQuantity(${array,itemIndex})"></i>
+          <td class="fw-bold"><i class="fa-solid fa-minus btn btn-warning btn-sm me-3" onClick="reduceQuantity(${itemIndex})"></i>
           ${item.productQuantity}
           <i class="fa-solid fa-plus btn btn-success btn-sm ms-3" onClick="addQuantity(${itemIndex})"></i></td>
           <td class="fw-bold">$${Number(item.productPrice) * Number(item.productQuantity)
@@ -100,21 +103,21 @@ function sortProductName(array,direction) {
 }
 
 // delete product from shopping cart
-function deleteProduct(array,productIndex) {
-    array.splice(productIndex, 1);
-    createCartTable(array);
+function deleteProduct(productIndex) {
+    currentArray.splice(productIndex, 1);
+    createCartTable(currentArray);
 }
 
 //Add product Quantity
 function addQuantity(productIndex) {
-    products[productIndex].productQuantity++;
-    createCartTable();
+    currentArray[productIndex].productQuantity++;
+    createCartTable(currentArray);
 }
 //Reduce product Quantity
 function reduceQuantity(productIndex) {
-    if (products[productIndex].productQuantity > 1) {
-        products[productIndex].productQuantity--;
-        createCartTable();
+    if (currentArray[productIndex].productQuantity > 1) {
+        currentArray[productIndex].productQuantity--;
+        createCartTable(currentArray);
     }
 }
 
