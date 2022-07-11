@@ -30,6 +30,7 @@ const products = [
         productImageSrc: "CheetosPuffsCheese.jpg",
     },
 ];
+let currentArray=products;
 //function createCartTable
 function createCartTable(array) {
     let rows = array.map(
@@ -40,7 +41,7 @@ function createCartTable(array) {
             }"></th>
           <td class='text-start'>${item.productName}</td>
           <td>$${item.productPrice}</td>
-          <td class="fw-bold"><i class="fa-solid fa-minus btn btn-warning btn-sm me-3" onClick="reduceQuantity(${itemIndex})"></i>
+          <td class="fw-bold"><i class="fa-solid fa-minus btn btn-warning btn-sm me-3" onClick="reduceQuantity(${array,itemIndex})"></i>
           ${item.productQuantity}
           <i class="fa-solid fa-plus btn btn-success btn-sm ms-3" onClick="addQuantity(${itemIndex})"></i></td>
           <td class="fw-bold">$${Number(item.productPrice) * Number(item.productQuantity)
@@ -59,48 +60,49 @@ document.querySelector("#keyword").addEventListener("keyup", doSearch);
 function doSearch() {
     let keyword = document.querySelector("#keyword").value.toLowerCase();
     const searchResult = products.filter((item) => item.productName.toLowerCase().includes(keyword))
-    createCartTable(searchResult)
+    createCartTable(searchResult);
+    currentArray=searchResult;
 }
 
 //add event listeners to sort icons
 document
     .querySelector(".fa-arrow-down-a-z")
     .addEventListener("click", function () {
-        sortProductName(true);
+        sortProductName(currentArray,true);
     });
 document
     .querySelector(".fa-arrow-up-z-a")
     .addEventListener("click", function () {
-        sortProductName(false);
+        sortProductName(currentArray,false);
     });
 
 // sort productName function
-function sortProductName(direction) {
+function sortProductName(array,direction) {
     if (direction) {
-        products.sort(function (a, b) {
+        array.sort(function (a, b) {
             let fa = a.productName.toLowerCase();
             let fb = b.productName.toLowerCase();
             if (fa < fb) return -1;
             if (fa > fb) return 1;
             return 0;
         });
-        createCartTable(products);
+        createCartTable(array);
     } else {
-        products.sort(function (a, b) {
+        array.sort(function (a, b) {
             let fa = a.productName.toLowerCase();
             let fb = b.productName.toLowerCase();
             if (fa > fb) return -1;
             if (fa < fb) return 1;
             return 0;
         });
-        createCartTable(products);
+        createCartTable(array);
     }
 }
 
 // delete product from shopping cart
-function deleteProduct(productIndex) {
-    products.splice(productIndex, 1);
-    createCartTable();
+function deleteProduct(array,productIndex) {
+    array.splice(productIndex, 1);
+    createCartTable(array);
 }
 
 //Add product Quantity
