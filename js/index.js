@@ -56,17 +56,22 @@ function createCartTable(array) {
     calculateOrderTotal(array);
 }
 
-// Add Eventlistener to SearchBtn
-document.querySelector("#searchBtn").addEventListener("click", doSearch);
-document.querySelector("#keyword").addEventListener("keyup", doSearch);
-
-function doSearch() {
-    let keyword = document.querySelector("#keyword").value.toLowerCase();
-    const searchResult = products.filter((item) => item.productName.toLowerCase().includes(keyword))
-    createCartTable(searchResult);
-    currentArray=searchResult;
+//function calculateOrderTotal to calculate sum order
+function calculateOrderTotal(array) {
+    let sum = array.reduce(
+        (accumulator, currentProduct) =>
+            accumulator +
+            currentProduct.productPrice * currentProduct.productQuantity,
+        0
+    );
+    document.querySelector("tfoot").innerHTML = `<tr>
+<td colspan=""></td>
+<td colspan="3"><button class='btn btn-primary'>Continue Check out</button></td>
+<td colspan=""></td>
+<td class="fw-bold" colspan="">TOTAL: $${sum}</td>
+<td colspan=""></td>
+<tr>`;
 }
-
 //add event listeners to sort icons
 document
     .querySelector(".fa-arrow-down-a-z")
@@ -121,21 +126,17 @@ function reduceQuantity(productIndex) {
     }
 }
 
-//function calculateOrderTotal to calculate sum order
-function calculateOrderTotal(array) {
-    let sum = array.reduce(
-        (accumulator, currentProduct) =>
-            accumulator +
-            currentProduct.productPrice * currentProduct.productQuantity,
-        0
-    );
-    document.querySelector("tfoot").innerHTML = `<tr>
-<td colspan=""></td>
-<td colspan="3"><button class='btn btn-primary'>Continue Check out</button></td>
-<td colspan=""></td>
-<td class="fw-bold" colspan="">TOTAL: $${sum}</td>
-<td colspan=""></td>
-<tr>`;
+// Add Eventlistener to SearchBtn
+document.querySelector("#searchBtn").addEventListener("click", doSearch);
+document.querySelector("#keyword").addEventListener("keyup", doSearch);
+
+function doSearch() {
+    let keyword = document.querySelector("#keyword").value.toLowerCase();
+    const searchResult = products.filter((item) => item.productName.toLowerCase().includes(keyword))
+    createCartTable(searchResult);
+    currentArray=searchResult;
 }
+
+
 
 
