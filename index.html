@@ -1,49 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>Home</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <title>Shopping Cart</title>
-</head>
-
-<body onLoad="">
-  <div class="container vh-100 p-4">
-    <div class="row justify-content-center">
-      <div class="col-7 overflow-hidden rounded bg-white p-0">
-        <table class="table table-hover text-center" style="background-color: rgb(242, 248, 253)">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Image</th>
-              <th class="">
-                <i class="fa-solid fa-arrow-down-a-z"></i>
-                <i class="fa-solid fa-arrow-up-z-a"></i>
-              </th>
-              <th>Price</th>
-              <th>Quantity</th>
-              <th>Total</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-          <tfoot></tfoot>
-        </table>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" id="keyword">
-          <button class="btn btn-outline-primary" type="button" id="searchBtn">search</button>
+  <body onload="fillProductContainer()">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12 position-sticky bg-secondary text-white p-3">
+          <button
+            type="button"
+            class="btn position-relative text-white"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+          >
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-success"
+            >
+              <span id="basketCount">1</span>
+              <span class="visually-hidden">unread messages</span>
+            </span>
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col p-4"></div>
+      </div>
+      <div class="container">
+        <div class="row row-cols-6 g-4" id="productContainer"></div>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">...</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
-  <script src="js/index.js"></script>
-</body>
-
+    <script src="js/index.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+  </body>
 </html>
