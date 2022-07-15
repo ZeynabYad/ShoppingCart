@@ -201,3 +201,17 @@ function deleteProduct(productIndex) {
     currentArray.splice(productIndex, 1);
     createCartTable(currentArray);
 }
+
+//Add product Quantity
+function addQuantity(productIndex) {
+    currentArray[productIndex].productQuantity++;
+    createCartTable(currentArray);
+}
+
+//Reduce product Quantity
+function reduceQuantity(productIndex) {
+    if (currentArray[productIndex].productQuantity > 1) {
+        currentArray[productIndex].productQuantity--;
+        createCartTable(currentArray);
+    }
+}
