@@ -160,3 +160,15 @@ function calculateOrderTotal(array) {
 <td colspan=""></td>
 <tr>`;
 }
+
+//add event listeners to sort icons
+document
+    .querySelector(".fa-arrow-down-a-z")
+    .addEventListener("click", function () {
+        sortProductName(currentArray,true);
+    });
+document
+    .querySelector(".fa-arrow-up-z-a")
+    .addEventListener("click", function () {
+        sortProductName(currentArray,false);
+    });
