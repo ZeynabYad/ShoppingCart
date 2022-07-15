@@ -71,9 +71,9 @@ const products = [
         productPrice: 20,
         productImageSrc: "chocolatecoveredwaffleIceCream.jpg",
     },
- 
+
 ]
-let shoppingCart=[];
+let shoppingCart = [];
 
 //function createCartTable
 function fillProductContainer() {
@@ -104,4 +104,19 @@ function fillProductContainer() {
 
 }
 
+//function addToCart
+function addToCart(...args) {
 
+    let productIndex = shoppingCart.findIndex(productObject => productObject.productId === products[args[0]].productId)
+
+    if (productIndex === -1) {
+        shoppingCart.push(products[args[0]]);
+        shoppingCart[shoppingCart.length - 1].productQuantity = 1;
+    }
+    else {
+        shoppingCart[productIndex].productQuantity++;
+    }
+
+    document.querySelector("#basketCount").innerHTML = shoppingCart.length;
+
+}
