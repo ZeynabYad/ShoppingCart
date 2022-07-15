@@ -172,3 +172,26 @@ document
     .addEventListener("click", function () {
         sortProductName(currentArray,false);
     });
+
+// sort productName function
+function sortProductName(array,direction) {
+    if (direction) {
+        array.sort(function (a, b) {
+            let fa = a.productName.toLowerCase();
+            let fb = b.productName.toLowerCase();
+            if (fa < fb) return -1;
+            if (fa > fb) return 1;
+            return 0;
+        });
+        createCartTable(array);
+    } else {
+        array.sort(function (a, b) {
+            let fa = a.productName.toLowerCase();
+            let fb = b.productName.toLowerCase();
+            if (fa > fb) return -1;
+            if (fa < fb) return 1;
+            return 0;
+        });
+        createCartTable(array);
+    }
+}
