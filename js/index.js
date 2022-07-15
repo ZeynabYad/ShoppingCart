@@ -74,6 +74,7 @@ const products = [
 
 ]
 let shoppingCart = [];
+let currentArray=shoppingCart;
 
 //function createCartTable
 function fillProductContainer() {
@@ -141,4 +142,21 @@ function createCartTable(array) {
     );
     document.querySelector("tbody").innerHTML = rows.join("");
     calculateOrderTotal(array);
+}
+
+//function calculateOrderTotal to calculate sum order
+function calculateOrderTotal(array) {
+    let sum = array.reduce(
+        (accumulator, currentProduct) =>
+            accumulator +
+            currentProduct.productPrice * currentProduct.productQuantity,
+        0
+    );
+    document.querySelector("tfoot").innerHTML = `<tr>
+<td colspan=""></td>
+<td colspan="3"><button class='btn btn-primary'>Continue Check out</button></td>
+<td colspan=""></td>
+<td class="fw-bold" colspan="">TOTAL: $${sum}</td>
+<td colspan=""></td>
+<tr>`;
 }
