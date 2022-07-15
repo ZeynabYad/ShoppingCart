@@ -215,3 +215,14 @@ function reduceQuantity(productIndex) {
         createCartTable(currentArray);
     }
 }
+
+// Add Eventlistener to SearchBtn
+document.querySelector("#searchBtn").addEventListener("click", doSearch);
+document.querySelector("#keyword").addEventListener("keyup", doSearch);
+
+function doSearch() {
+    let keyword = document.querySelector("#keyword").value.toLowerCase();
+    const searchResult = products.filter((item) => item.productName.toLowerCase().includes(keyword))
+    createCartTable(searchResult);
+    currentArray=searchResult;
+}
