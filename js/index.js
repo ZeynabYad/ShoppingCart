@@ -195,3 +195,9 @@ function sortProductName(array,direction) {
         createCartTable(array);
     }
 }
+
+// delete product from shopping cart
+function deleteProduct(productIndex) {
+    currentArray.splice(productIndex, 1);
+    createCartTable(currentArray);
+}
