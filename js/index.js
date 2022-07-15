@@ -118,5 +118,27 @@ function addToCart(...args) {
     }
 
     document.querySelector("#basketCount").innerHTML = shoppingCart.length;
+    createCartTable(currentArray);
+}
 
+//function createCartTable
+function createCartTable(array) {
+    let rows = array.map(
+        (item, itemIndex) =>
+            `<tr class='align-middle'>
+          <th>${itemIndex + 1}</th>
+          <th><img width="80" height="80" src="images/${item.productImageSrc
+            }"></th>
+          <td class='text-start'>${item.productName}</td>
+          <td>$${item.productPrice}</td>
+          <td class="fw-bold"><i class="fa-solid fa-minus btn btn-warning btn-sm me-3" onClick="reduceQuantity(${itemIndex})"></i>
+          ${item.productQuantity}
+          <i class="fa-solid fa-plus btn btn-success btn-sm ms-3" onClick="addQuantity(${itemIndex})"></i></td>
+          <td class="fw-bold">$${Number(item.productPrice) * Number(item.productQuantity)
+            }</td>
+          <td><i class="fa-solid fa-trash-can text-danger" onClick="deleteProduct(${itemIndex})"></i></td>
+        </tr>`
+    );
+    document.querySelector("tbody").innerHTML = rows.join("");
+    calculateOrderTotal(array);
 }
